@@ -29,7 +29,9 @@ while num_letters != 0:
         else:
             urutan += 1
 
+    print("Your guessing letter is '{}'".format(word_input))
     num_letters -= 1
+    print("You still have {} chance".format(num_letters))
     print("Here the word you need to guess:")
     for blank in blank_letters:
         print(blank, end="")
