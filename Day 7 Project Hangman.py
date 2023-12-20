@@ -14,9 +14,11 @@ print("Here the word you need to guess:")
 for blank in blank_letters:
     print(blank, end="")
 print("")
+
 word_input = input("your letter guess? ").lower()
-word_input_list = []
-word_input_list.append(word_input)
+while len(word_input) != 1:
+    print("please input only a letter")
+    word_input = input("your letter guess? ").lower()
 
 num_letters = 6
 urutan = 0
@@ -42,6 +44,9 @@ while num_letters != 0:
         break
 
     word_input = input("your letter guess? ").lower()
+    while len(word_input) != 1:
+        print("please input only a letter")
+        word_input = input("your letter guess? ").lower()
 
 if blank_letters != split_word:
     print("")
@@ -49,6 +54,6 @@ if blank_letters != split_word:
     print("Poor man lost his live")
     print("The answer is '{}'".format(random_word))
 elif blank_letters == split_word:
-    print("You saved poor man")
+    print("You saved the poor man")
 else:
     print("if this printed on console there must be a bug")
