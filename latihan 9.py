@@ -13,7 +13,8 @@
 # programming_dictionary["Bug"] = "An error of program wether it's expected or not expected."
 # print(programming_dictionary["Bug"])
 #
-# for key in programming_dictionary:
+# for key in
+# programming_dictionary:
 #     print(key + ": " + programming_dictionary[key])
 
 travel_log = [
