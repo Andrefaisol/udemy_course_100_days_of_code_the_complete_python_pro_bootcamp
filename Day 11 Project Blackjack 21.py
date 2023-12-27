@@ -49,9 +49,11 @@ def hand_check(hand1, hand2):
 
 
 def draw_again_func():
+    print("")
     draw_again = input("Do you want to draw again?(Press 'y' or 'n'): ").lower()
     while draw_again != "y" and draw_again != "n":
         draw_again = input("Do you want to draw again?(Press 'y' or 'n'): ").lower()
+    print("")
     if draw_again == "y":
         draw(user_hand)
         ace(result=calculate(user_hand), hand=user_hand)
@@ -61,6 +63,7 @@ def draw_again_func():
         print(f"Your hand is {hand_string}")
         print(f"total hand value: {calculate(user_hand)}")
         print(f"Dealer hand is {dealer_hand[0]} and ***")
+        print("")
         if calculate(user_hand) < 21:
             draw_again_func()
     else:
@@ -77,6 +80,7 @@ while blackjack:
     start = input("Press 'Enter' to start")
     while start != "":
         start = input("Press 'Enter' to start")
+    print("")
 
     for idx in range(2):
         draw(user_hand)
@@ -121,6 +125,7 @@ while blackjack:
     play_again = input("Do you want to play again?('y' or 'n'): ").lower()
     while play_again != "y" and play_again != "n":
         play_again = input("Do you want to play again?('y' or 'n'): ").lower()
+    print("")
     if play_again == "n":
         print("Good Bye")
         blackjack = False
