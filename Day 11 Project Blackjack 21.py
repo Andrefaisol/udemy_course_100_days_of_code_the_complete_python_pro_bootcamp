@@ -7,16 +7,15 @@ def draw(hand):
 
 
 def calculate(total_hand):
-    result = 0
-    for num in total_hand:
-        result += num
+    result = sum(total_hand)
     return result
 
 
 def ace(result, hand):
-    if result > 21:
-        if 11 in user_hand:
-            hand[hand.index(11)] = 1
+    if result > 21 and 11 in hand:
+        hand[hand.index(11)] = 1
+    else:
+        return
 
 
 def hand_check(hand1, hand2):
@@ -24,7 +23,7 @@ def hand_check(hand1, hand2):
         if hand1 == hand2:
             print("Draw")
         elif hand1 > hand2:
-            while hand2 < 17:
+            while calculate(dealer_hand) < 17:
                 draw(dealer_hand)
                 ace(result=calculate(dealer_hand), hand=dealer_hand)
             if hand1 == calculate(dealer_hand):
@@ -67,6 +66,7 @@ def draw_again_func():
     else:
         return
 
+
 # game run start here
 blackjack = True
 while blackjack:
@@ -81,8 +81,6 @@ while blackjack:
     for idx in range(2):
         draw(user_hand)
         ace(result=calculate(user_hand), hand=user_hand)
-
-    for idx in range(2):
         draw(dealer_hand)
         ace(result=calculate(dealer_hand), hand=dealer_hand)
 
@@ -96,11 +94,8 @@ while blackjack:
     if sum_user_hand == 21:
         if sum_user_hand == sum_dealer_hand:
             print("")
-            print("Draw")
-            print("")
+
         elif sum_user_hand > sum_dealer_hand:
-            print("")
-            print("You Win")
             print("")
     else:
         draw_again_func()
