@@ -25,7 +25,6 @@ def hand_check(hand1, hand2):
         elif hand1 > hand2:
             while calculate(dealer_hand) < 17:
                 draw(dealer_hand)
-                print(dealer_hand)
                 ace(result=calculate(dealer_hand), hand=dealer_hand)
             if hand1 == calculate(dealer_hand):
                 print("Draw")
@@ -38,7 +37,6 @@ def hand_check(hand1, hand2):
     elif hand1 < 21:
         while calculate(dealer_hand) < 17:
             draw(dealer_hand)
-            print(dealer_hand)
             ace(result=calculate(dealer_hand), hand=dealer_hand)
         if calculate(dealer_hand) > 21:
             print("You Win")
