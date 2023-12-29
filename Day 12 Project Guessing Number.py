@@ -1,4 +1,5 @@
 import random
+import os
 
 CHOSE_NUMBER = random.randint(1, 100)
 EASY = 10
@@ -7,9 +8,10 @@ HARD = 5
 
 def input_level():
     level = input("Choose what level do you want to play, type 'easy' or 'hard': ").lower()
-    while level != "easy" and input_level != "hard":
+    while level != "easy" and level != "hard":
         level = input("Choose what level do you want to play, type 'easy' or 'hard': ").lower()
     return level
+
 
 def level_check(level):
     global EASY
@@ -17,7 +19,7 @@ def level_check(level):
     count = 0
     if level == "easy":
         count += EASY
-    else:
+    elif level == "hard":
         count += HARD
     return count
 
@@ -45,11 +47,27 @@ while game:
 
     while answer[0] != CHOSE_NUMBER:
         if many_guess == 0:
+            print("============================")
             print("You run out of guess attempt")
+            print("============================")
             break
         guessing()
         is_it_right(answer[0])
         many_guess -= 1
         print(f"You have {many_guess} more attempt to guess")
-    print("==========================")
-    print("Your guess number is right")
+        print("")
+
+    if answer[0] == CHOSE_NUMBER:
+        print("==========================")
+        print("Your guess number is right")
+        print("==========================")
+
+    play_again = input("Do you want to play again?(Type 'y' or 'n'): ").lower()
+    while play_again != "y" and play_again != "n":
+        play_again = input("Do you want to play again?(Type 'y' or 'n'): ").lower()
+    if play_again == "n":
+        print("")
+        print("Goodbye")
+        game = False
+    else:
+        os.system("cls")
