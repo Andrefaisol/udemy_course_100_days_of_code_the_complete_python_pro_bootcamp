@@ -25,10 +25,11 @@ def level_check(level):
 
 
 def guessing():
-    number_guess = input("Type your number guess here: ")
+    number_guess = ""
     while not number_guess.isdigit() or (int(number_guess) < 1 or int(number_guess) > 100):
         number_guess = input("Type your number guess here: ")
-    answer[0] = int(number_guess)
+    return int(number_guess)
+
 
 
 def is_it_right(number):
@@ -39,7 +40,6 @@ def is_it_right(number):
         print("too high")
 
 
-answer = [0]
 game = True
 while game:
     print('''                                                                                                                 
@@ -61,20 +61,23 @@ while game:
 
     print("=============================================================")
     many_guess = level_check(input_level())
+    answer = 0
 
-    while answer[0] != CHOSE_NUMBER:
+    while answer != CHOSE_NUMBER:
+
         if many_guess == 0:
             print("============================")
             print("You run out of guess attempt")
             print("============================")
             break
-        guessing()
-        is_it_right(answer[0])
-        many_guess -= 1
+
         print(f"You have {many_guess} more attempt to guess")
+        answer = guessing()
+        is_it_right(answer)
+        many_guess -= 1
         print("")
 
-    if answer[0] == CHOSE_NUMBER:
+    if answer == CHOSE_NUMBER:
         print("==========================")
         print("Your guess number is right")
         print("==========================")
@@ -82,6 +85,7 @@ while game:
     play_again = input("Do you want to play again?(Type 'y' or 'n'): ").lower()
     while play_again != "y" and play_again != "n":
         play_again = input("Do you want to play again?(Type 'y' or 'n'): ").lower()
+
     if play_again == "n":
         print("")
         print("Goodbye")
