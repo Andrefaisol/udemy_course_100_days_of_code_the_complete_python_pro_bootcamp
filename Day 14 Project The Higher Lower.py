@@ -1,4 +1,5 @@
 from random import randint
+import os
 
 library = [
     {"name": "Whatsapp",
@@ -49,31 +50,53 @@ def random_number():
     return random
 
 
-index1 = random_number()
-index2 = random_number()
-compare = library[index1]["downloaded"]
-compared = library[index2]["downloaded"]
+game = True
+while game:
 
-parameter = 2
+    print("Welcome to Higher Lower game, You will compare and guess which media social that most downloaded.")
+    print("The game will stop once your guess is wrong.")
+    print("====================================================================")
+    correct = 0
+    question = True
+    while question:
+        index1 = 0
+        index2 = 0
+        while index1 == index2:
+            index1 = random_number()
+            index2 = random_number()
 
-answer = ""
-while answer != "higher" and answer != "lower":
-    answer = input(f"Does {library[index1]["name"]} is higher compared with {library[index2]["name"]}?\n"
-                   f"(Type 'higher' or 'lower'): ").lower()
+        answer = ""
+        while answer != "higher" and answer != "lower":
+            answer = input(f"Does {library[index1]["name"]} is higher or lower compared with {library[index2]["name"]}?"
+                           f"\n(Type 'higher' or 'lower'): ").lower()
 
-if compare > compared:
-    # print(f"{library[index1]["name"]} is higher compared with {library[index2]["name"]}")
-    parameter = 1
-elif compare < compared:
-    # print(f"{library[index1]["name"]} is lower compared with {library[index2]["name"]}")
-    parameter = 0
-elif compare == compared:
-    print("this is bug")
+        compare = library[index1]["downloaded"]
+        compared = library[index2]["downloaded"]
 
-# correct =
-if parameter == 1 and answer == "higher":
-    print(f"{library[index1]["name"]} is higher compared with {library[index2]["name"]}")
-elif parameter == 0 and answer == "lower":
-    print(f"{library[index1]["name"]} is lower compared with {library[index2]["name"]}")
-else:
-    print("loop stop")
+        parameter = 2
+        if compare > compared:
+            parameter = 1
+        elif compare < compared:
+            parameter = 0
+
+        if parameter == 1 and answer == "higher":
+            print(f"{library[index1]["name"]} is higher compared with {library[index2]["name"]}")
+            print("====================================================================")
+            correct += 1
+        elif parameter == 0 and answer == "lower":
+            print(f"{library[index1]["name"]} is lower compared with {library[index2]["name"]}")
+            print("====================================================================")
+            correct += 1
+        else:
+            print(f"Your score is {correct}")
+            question = False
+
+    go = ""
+    while go != "yes" and go != "no":
+        go = input("Do you want to quit 'yes' or 'no'?: ").lower()
+
+    if go == "yes":
+        print("Goodbye")
+        game = False
+    elif go == "no":
+        os.system('cls')
