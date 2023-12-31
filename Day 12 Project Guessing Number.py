@@ -31,7 +31,6 @@ def guessing():
     return int(number_guess)
 
 
-
 def is_it_right(number):
     global CHOSE_NUMBER
     if number < CHOSE_NUMBER:
