@@ -10,7 +10,10 @@ for i in question_data:
     question_bank.append(new_question)
 
 quiz = QuizBrain(question_bank)
-answer_list = []
-for number in range(len(question_bank)):
-    answer_list.append(quiz.next_question(number))
-    print(answer_list)
+
+while quiz.last_question():
+    quiz.next_question()
+print("==============================")
+print("You completed the quiz")
+print(f"Your final score is {quiz.score}/{quiz.question_number}")
+print("==============================")
