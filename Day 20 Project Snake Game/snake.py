@@ -1,25 +1,29 @@
 from turtle import Turtle
-YPOS = [0, -20, -40]
+POSITION = [(0, 0), (-20, 0), (-40, 0)]
 DISTANCE = 20
 UP = 90
 DOWN = 270
 RIGHT = 0
 LEFT = 180
 
+
 class Snake:
     def __init__(self):
         self.snake = []
-        self.adding()
+        self.adding_body()
         self.head = self.snake[0]
 
-    def adding(self):
-        for i in range(0, len(YPOS)):
-            dubi = Turtle(shape="square")
-            dubi.color("green")
-            dubi.penup()
-            dubi.shapesize(1, 1)
-            dubi.setpos(YPOS[i], 0)
-            self.snake.append(dubi)
+    def adding_body(self):
+        for i in POSITION:
+            self.body(i)
+
+    def body(self, position):
+        dubi = Turtle(shape="square")
+        dubi.color("green")
+        dubi.penup()
+        dubi.shapesize(1, 1)
+        dubi.setpos(position)
+        self.snake.append(dubi)
 
     def move(self):
         for x in range(len(self.snake) - 1, 0, -1):
@@ -43,3 +47,7 @@ class Snake:
     def down(self):
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
+
+    def add_tail(self):
+        tail = self.snake[-1].position()
+        self.body(tail)
