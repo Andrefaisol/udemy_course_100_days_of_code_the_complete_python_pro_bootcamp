@@ -7,11 +7,10 @@ class Player(Turtle):
         self.penup()
         self.shape("turtle")
         self.setheading(90)
-        self.shapesize(stretch_wid=2, stretch_len=2)
+        self.shapesize(stretch_wid=1.5, stretch_len=1.5)
         self.speed("fastest")
         self.color("green")
         self.setpos(x=0, y=-260)
-
 
     def move_up(self):
         new_y = self.ycor() + 40
@@ -20,4 +19,3 @@ class Player(Turtle):
     def move_down(self):
         new_y = self.ycor() - 40
         self.goto(x=self.xcor(), y=new_y)
-
