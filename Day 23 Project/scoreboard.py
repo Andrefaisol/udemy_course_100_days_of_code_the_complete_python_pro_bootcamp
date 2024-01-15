@@ -1,9 +1,5 @@
 from turtle import Turtle
 
-UPLINE = [260, 220, 180, 160, 100, 60, 20, -20, -60, -100, -160, -180, -220, -260]
-DOWNLINE = []
-
-
 class ScoreBoard(Turtle):
     def __init__(self):
         super().__init__()
@@ -16,13 +12,13 @@ class ScoreBoard(Turtle):
         self.penup()
         self.setpos(x=270, y=-260)
         self.setheading(180)
-        for x in range(6):
+        for x in range(7):
             for i in range(5):
                 self.pendown()
                 self.forward(100)
                 self.penup()
                 self.forward(50)
-            self.goto(x=270, y=self.ycor() + 100)
+            self.goto(x=270, y=self.ycor() + 90)
 
     def game_over(self):
         self.goto(0, 0)

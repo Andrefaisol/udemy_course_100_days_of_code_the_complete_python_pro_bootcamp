@@ -1,7 +1,7 @@
 from turtle import Turtle
 import random
 
-GENY = [230, 200, 160, 120, 80, 40, 0, -40, -80, -120, -180, -220]
+GENY = [240, 200, 160, 120, 80, 40, 0, -40, -80, -120, -160, -200, -240]
 COLOR = ["green", "yellow", "blue", "red", "white", "black"]
 
 
