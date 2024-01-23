@@ -3,7 +3,7 @@ from tkinter import *
 
 def clickme():
     n = input_word.get()
-    m = round(int(n) * 1.6, 1)
+    m = round(int(n) * 1.609, 1)
     label2.config(text=m)
 
 
