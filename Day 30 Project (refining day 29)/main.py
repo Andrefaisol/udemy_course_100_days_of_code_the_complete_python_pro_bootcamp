@@ -29,8 +29,8 @@ def generate():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def add():
     new_dict = {
-        web_entry.get(): {
-            "email": eu_entry.get(),
+        web_entry.get().lower(): {
+            "email": eu_entry.get().lower(),
             "password": password_entry.get(),
         }
     }
@@ -42,17 +42,41 @@ def add():
                                                   f"\nPassword: {password_entry.get()}")
 
         if ask_sure:
-            with open(file="saved_data.json", mode="r") as file:
-                new_data = json.load(file)
+            try:
+                with open(file="saved_data.json", mode="r") as file:
+                    new_data = json.load(file)
+            except FileNotFoundError:
+                with open(file="saved_data.json", mode="w") as file:
+                    json.dump(new_dict, file, indent=4)
+            else:
                 new_data.update(new_dict)
 
-            with open(file="saved_data.json", mode="w") as file:
-                json.dump(new_data, file, indent=4)
+                with open(file="saved_data.json", mode="w") as file:
+                    json.dump(new_data, file, indent=4)
+            finally:
 
-            web_entry.delete(0, END)
-            eu_entry.delete(0, END)
-            password_entry.delete(0, END)
-            web_entry.focus()
+                web_entry.delete(0, END)
+                eu_entry.delete(0, END)
+                password_entry.delete(0, END)
+                web_entry.focus()
+
+
+# ---------------------------- SEARCH ------------------------------- #
+def search():
+    webkey = web_entry.get().lower()
+    try:
+        with open("saved_data.json", mode="r") as data_file:
+            jdict = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Not Found", message=f"File Not Found")
+    else:
+        if webkey in jdict:
+            messagebox.showinfo(title=web_entry.get(), message=f"email/user: {jdict[webkey]["email"]}\n"
+                                                               f"password: {jdict[webkey]["password"]}")
+        else:
+            messagebox.showinfo(title="Not Found", message=f"You don't have {web_entry.get()} account stored")
+    finally:
+        web_entry.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -83,9 +107,11 @@ generate_button.grid(row=3, column=2)
 add_button = Button(text="Add", font=("Helvetica", 10, "normal"), command=add, width=39)
 add_button.grid(row=4, column=1, columnspan=2)
 
+search_button = Button(text="Search", font=("Helvetica", 10, "normal"), width=14, command=search)
+search_button.grid(row=1, column=2)
 
-web_entry = Entry(width=35, font=("Helvetica", 12, "normal"))
-web_entry.grid(row=1, column=1, columnspan=2)
+web_entry = Entry(width=21, font=("Helvetica", 12, "normal"))
+web_entry.grid(row=1, column=1)
 web_entry.focus()
 
 eu_entry = Entry(width=35, font=("Helvetica", 12, "normal"))
